@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+</head>
+<body>
+  <form name="adventure" action="success.html" method="post">
+    <h1> Welcome to the mood page!</h1>
+    <fieldset>
+      <div>
+        <label>Full name:</label>
+        <input type="text" name="fullname">
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="user_email">
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password">
+      </div>
+    </fieldset>
+    <fieldset>
+      <div>
+        <label>How are you feeling today:</label>
+        <select name="feeling">
+          <option value="emotion">Happy</option>
+          <option value="emotion">Sad</option>
+          <option value="emotion">Angry</option>
+        </select>
+      </div>
+      <div>
+        <label>Other feeling</label>
+        <input type="text" name="other_feeling">
+      </div>      
+      <div>
+        <textarea name="story" rows="10" cols="50"> Tell us more about your mood</textarea>    
+        <label>Choose a date:</label>
+        <input type="date" name="date">
+      </div>
+      <div>
+          <p> How did you hear about us?<p>
+          <input type="radio" id="social">
+          <label for= "social">Social Media</label>
+          <input type="radio" id="friend">
+          <label for= "friend">Friend</label>
+          <input type="radio" id="search">
+          <label for= "search">Search engine</label>
+      </div>
+      <div>
+        <input type="checkbox" name="cb-agree" value="agree">
+        I would like to receive information on my mood.
+      </div>
+    </fieldset>
+    
+    <button type="submit">Save this adventure</button>
+  </form>
+</body>
+</html>
