@@ -1,0 +1,24 @@
+body{
+  text-align: center;
+}
+
+
+#octopus{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 75px;
+  z-index: -1;
+  position: fixed;
+}
+
+#hat{
+  position: relative;
+  top: 15px;
+  right: 25px;
+}
+
+#glasses{
+  position: relative;
+  top: 65px;
+  right: 240px;
+}
