@@ -1,0 +1,16 @@
+This algorithm assumes many things. The robot has light and sound sensors, wheels, and an extendible arms. It also knows where it is at.
+The path has been marked on the floor for the robot to step.
+The elevator has sounds. If it goes down it dings once, if it goes up it dings twice. It will ding once every floor.
+
+1. Robot is told what floor it needs to hgo to.
+2. Robot goes to blue x (begining position).
+3. Robot checks if he has to go up (floor >current) or down (floor < current)
+4. Robot lifts its arm depending on the button it has to push.
+5. Robot checks if door is open until it is.
+6. Robot walks in elevator.
+7. Robot walks to red x (buttons)
+8. Robot lifts arm and moves it right or left depending on the floor number.
+9. Robot pushes number.
+10. Robot hears initial beep, then counts the amount of beeps  until it reaches floor.
+11. Robot checks if door is open.
+12. Robot gets out of the elevator and waves his success flag. :)
