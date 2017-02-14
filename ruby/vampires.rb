@@ -31,6 +31,21 @@ while employee>0
 		puts "ERROR"
 	end
 
+	stop=false
+	allergy=false
+
+	until stop
+		puts "Name one allergy you have or type done"
+		answer=gets.chomp
+		if answer=="done"
+			stop=true
+		elsif answer =="sunshine"
+			allergy=true
+			stop=true
+		end
+	end
+
+
 	age_right= age==(2017-year)
 
 
@@ -40,11 +55,12 @@ while employee>0
 		puts "Probably not a vampire"
 	elsif !age_right && ( !garlic && !insurance)
 		puts "Almost certainly a vampire"
-	elsif !age_right && ( !garlic || !insurance)
+	elsif allergy || (!age_right && ( !garlic || !insurance))
 		puts "Probably a vampire"
 	else
 		puts "Results inconclusive"
 	end
 	employee-=1
 end
+
 
