@@ -14,3 +14,28 @@ The elevator has sounds. If it goes down it dings once, if it goes up it dings t
 10. Robot hears initial beep, then counts the amount of beeps  until it reaches floor.
 11. Robot checks if door is open.
 12. Robot gets out of the elevator and waves his success flag. :)
+
+
+Making pancakes
+This algorithm asumes that you have all the things you need in front of you.
+1. Measure your ingredients
+		Measure 1 cup of flour
+		Break one egg and put it in a container
+		Measure 3/4 cup of milk
+2. Mix your ingredients in large bowl
+	-mix
+	-check for lumps
+	-if there are no more lumps you are done
+3. Prepare pan
+	-Turn on the heat
+	-Put pan on top
+	-Check temperature until hot
+4. Make pankakes
+		-Pour 1/4 cup of mix into pan
+		-Check until bubles appear on top
+		-flip pan cake
+		-wait for 2 min
+		-take out
+5. Serve and eat
+		-Put pancakes in plate until enough.
+		-Eat until full.
