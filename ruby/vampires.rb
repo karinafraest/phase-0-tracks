@@ -1,6 +1,7 @@
 puts "How many employees will we process today? "
 employee=gets.chomp.to_i
 
+while employee>0
 	puts "What is your name? "
 	name=gets.chomp
 
@@ -44,4 +45,6 @@ employee=gets.chomp.to_i
 	else
 		puts "Results inconclusive"
 	end
+	employee-=1
+end
 
