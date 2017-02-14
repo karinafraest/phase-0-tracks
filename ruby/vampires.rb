@@ -1,5 +1,6 @@
+
 puts "How many employees will we process today? "
-employee=gets.chomp.to_i
+employee=gets.chomp.to_i #number of employees being processed
 
 while employee>0
 	puts "What is your name? "
@@ -22,7 +23,7 @@ while employee>0
 	end
 
 	puts "Would you like to enroll in the company's health insurance? (Y/N)"
-	insurance=gets.chomp.capitalize
+	insurance=gets.chomp.upcase
 	if insurance=="Y"
 		insurance=true
 	elsif insurance=="N"
@@ -30,7 +31,7 @@ while employee>0
 	else
 		puts "ERROR"
 	end
-
+	#Allergy loop
 	stop=false
 	allergy=false
 
@@ -45,10 +46,10 @@ while employee>0
 		end
 	end
 
-
+	#check for correct age
 	age_right= age==(2017-year)
 
-
+	#Conditional statements
 	if (age_right && (garlic && insurance) && (name=="Drake Cula" || name=="Tu Fang")) 
 		puts "Definitely a vampire"
 	elsif age_right && (garlic || insurance)
@@ -60,7 +61,7 @@ while employee>0
 	else
 		puts "Results inconclusive"
 	end
-	employee-=1
+	employee-=1 #employees processed counter
 end
 
-
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends"
