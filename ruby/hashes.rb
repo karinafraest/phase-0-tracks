@@ -59,6 +59,14 @@ def edit database, modify
 	return database
 end
 
+#prints database very pretty
+def pretty database
+	puts "-----PROFILE-----".center(20)
+	database.each do |key,value|
+		puts "#{key}:".ljust(10) + " #{value}".rjust(10)
+	end
+end
+
 puts "Welcome to the designer's interfase."
 quit=false
 until quit
@@ -66,12 +74,12 @@ until quit
 puts "Would you like to CREATE a profile, EDIT, or QUIT"
 action=gets.chomp
 	if action.upcase=="CREATE"
-		puts create database
+		pretty (create database)
 	elsif action.upcase=="EDIT"
 		puts "What would you like to edit?"
 		puts database.keys
 		modify=gets.chomp
-		puts edit(database,modify)
+		pretty (edit(database,modify))
 	elsif action.upcase=="QUIT"
 		quit=true
 	else
