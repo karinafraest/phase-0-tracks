@@ -18,3 +18,33 @@ Print the latest version of the hash, and exit the program.
 	User interfase that allows her to Create, Edit or Exit the program.	
 
 =end
+
+#GLOBAL VARIABLES
+database={}
+
+def ask question
+	puts question
+	answer=gets.chomp
+	if answer=="yes"
+		return true
+	elsif answer=="no"
+		return false
+	else
+		return answer
+	end
+end
+
+
+#METHOD FOR CREATING A DATABASE
+def create database
+	puts"Let's start creating a new profile."
+	database[:name]=ask "Client's name"
+	database[:last]=ask "Client's last name"
+	database[:age]= (ask "What is your age").to_i
+	database[:child]=(ask "How many children do you have?").to_i
+	database[:pets]=(ask "How many pets do you have?")to_i
+	database[:theme]=ask "Would you like a trendy, techno, or retro theme?"
+	database[:decor]=ask "Are you willing to pay for extra for decorations? (yes/no)"
+	return database
+end
+
