@@ -53,9 +53,11 @@ end
 
 #METHOD FOR EDITING ANY NUMBER
 def edit database, modify
-	puts "Insert new value for #{modify}"
-	change=gets.chomp
-	database[modify.to_sym]=change
+	if modify=="name" ||modify=="last" ||modify=="age" ||modify=="child"||modify=="pets"||modify=="theme"||modify=="decor"
+		puts "Insert new value for #{modify}"
+		change=gets.chomp
+		database[modify.to_sym]=change
+	end
 	return database
 end
 
@@ -67,6 +69,8 @@ def pretty database
 	end
 end
 
+
+#----------ACTUAL PROGRAM--------------------------------------
 puts "Welcome to the designer's interfase."
 quit=false
 until quit
