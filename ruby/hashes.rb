@@ -43,9 +43,9 @@ def create database
 	puts"Let's start creating a new profile."
 	database[:name]=ask "Client's name"
 	database[:last]=ask "Client's last name"
-	database[:age]= (ask "What is your age")
-	database[:child]=(ask "How many children do you have?")
-	database[:pets]=(ask "How many pets do you have?")
+	database[:age]= (ask "What is your age").to_i
+	database[:child]=(ask "How many children do you have?").to_i
+	database[:pets]=(ask "How many pets do you have?").to_i
 	database[:theme]=ask "Would you like a trendy, techno, or retro theme?"
 	database[:decor]=ask "Are you willing to pay for extra for decorations? (yes/no)"
 	return database
@@ -59,4 +59,22 @@ def edit database, modify
 	return database
 end
 
-puts create database
+puts "Welcome to the designer's interfase."
+quit=false
+until quit
+
+puts "Would you like to CREATE a profile, EDIT, or QUIT"
+action=gets.chomp
+	if action.upcase=="CREATE"
+		puts create database
+	elsif action.upcase=="EDIT"
+		puts "What would you like to edit?"
+		puts database.keys
+		modify=gets.chomp
+		puts edit(database,modify)
+	elsif action.upcase=="QUIT"
+		quit=true
+	else
+		puts "That is not valid"
+	end
+end
