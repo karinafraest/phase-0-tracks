@@ -53,6 +53,15 @@ shelter={
 	}
 }
 
-p shelter
-#shelter -- dogs and cats --- list of dogs ---list of cats, ---data of dogs --data of cats
-
+#print name of cat in kennel 7
+p shelter [:cats][:kennel_7][:name]
+#print information for all dogs
+p shelter[:dogs]
+#add an hability to Shereen the dog
+shelter[:dogs][:kennel_2][:habilities].push("Being too cute")
+#print the habilities of shereen the dog
+p shelter[:dogs][:kennel_2][:habilities][0]
+#create a name for dog in kennel 4
+shelter[:dogs][:kennel_4][:name]="Angus"
+#print name of dog in kennel 4
+p shelter[:dogs][:kennel_4][:name]
