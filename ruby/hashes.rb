@@ -29,6 +29,9 @@ def ask question
 		return true
 	elsif answer=="no"
 		return false
+	elsif answer==""
+		puts "Sorry, I did not catch that"
+		ask question
 	else
 		return answer
 	end
@@ -40,11 +43,20 @@ def create database
 	puts"Let's start creating a new profile."
 	database[:name]=ask "Client's name"
 	database[:last]=ask "Client's last name"
-	database[:age]= (ask "What is your age").to_i
-	database[:child]=(ask "How many children do you have?").to_i
-	database[:pets]=(ask "How many pets do you have?")to_i
+	database[:age]= (ask "What is your age")
+	database[:child]=(ask "How many children do you have?")
+	database[:pets]=(ask "How many pets do you have?")
 	database[:theme]=ask "Would you like a trendy, techno, or retro theme?"
 	database[:decor]=ask "Are you willing to pay for extra for decorations? (yes/no)"
 	return database
 end
 
+#METHOD FOR EDITING ANY NUMBER
+def edit database, modify
+	puts "Insert new value for #{modify}"
+	change=gets.chomp
+	database[modify.to_sym]=change
+	return database
+end
+
+puts create database
