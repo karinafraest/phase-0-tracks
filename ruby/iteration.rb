@@ -4,7 +4,7 @@ def greetings
 	puts "Status: end"
 end
 
-#greetings {|x| puts "Hello #{x}"}
+greetings {|x| puts "Hello #{x}"}
 
 movies=["Lord of the rings", "The heat", "Kill Bill", "Pursuit of happyness", "Stomp the yard","The Internship"]
 
@@ -16,3 +16,22 @@ database={
 	stomp_the_yard: "Meagan Good",
 	the_internship: "Vince Vaughn"
 }
+
+movies.each do |movie|
+	puts movie
+end
+
+movies.map! do |movie|
+	puts movie
+	movie<< " movie"
+end
+
+p movies
+
+p database
+
+database.each do |movie,actor|
+	puts "The protagonist for the movie #{movie} is #{actor}"
+end
+
+p database
