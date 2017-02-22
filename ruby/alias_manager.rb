@@ -10,23 +10,28 @@ def swap name
 	return swap_name
 end
 
+def consonant_change letter
+	if letter.downcase=="a"
+		return "e"
+	elsif letter=="e"
+		return "i"
+	elsif letter=="i"
+		return "o"
+	elsif letter=="o"
+		return "u"
+	elsif letter=="u" || letter=="z"
+		return "b"
+	end
+
+end
 
 def fake name
 	swapped_name=swap(name)
+	p swapped_name
 	name_array=swapped_name.split("")
 	name_array.map! do |letter|
-		if letter.downcase=="a"||letter=="e"||letter=="i" || letter=="o"||letter=="u"
-			if letter.downcase=="a"
-				"e"
-			elsif letter=="e"
-				"i"
-			elsif letter=="i"
-				"o"
-			elsif letter=="o"
-				"u"
-			elsif letter=="u"
-				"a"
-			end
+		if letter.downcase=="a"||letter=="e"||letter=="i" || letter=="o"||letter=="u"|| letter=="z"
+			consonant_change letter
 		elsif letter==" "
 			" "
 		else
@@ -37,3 +42,5 @@ def fake name
 	return fake_name
 end	
 p fake "Felicia Torres"
+
+p fake "Amanda Orozco"
