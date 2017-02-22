@@ -46,8 +46,16 @@ def fake name
 end	
 
 #USER INTERFASE
+quit=false
 puts "Hello, and welcome to the fake name generator!"
-puts "Please insert your name and last name"
-your_name=gets.chomp
-fake_name=fake your_name
-puts "Your fake name will be: #{fake_name}"
+until quit
+	puts "Please insert your name and last name or q to quit"
+	your_name=gets.chomp
+	if your_name=="q"
+		quit=true
+	else
+		fake_name=fake your_name
+		puts "Your fake name will be: #{fake_name}"
+	end
+end
+puts "Use your new name wisely"
