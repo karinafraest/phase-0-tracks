@@ -3,6 +3,7 @@
 	create fake name
 		swap the first and last name (split, reverse)
 		change all the vowels to next and consonants to next consonant (if/.next)
+	save information and display (save on hash, display)
 =end
 $consonants=["a","e","i","o","u","A","E","I","O","U"]
 
@@ -45,10 +46,17 @@ def fake name
 	return fake_name
 end	
 
+def pretty database
+	puts "-----Alias Manager-----".center(50)
+	puts "Name".ljust(20)+"Fake Name".rjust(30)
+	database.each do |key,value|
+		puts "#{key}:".ljust(20) + " #{value}".rjust(30)
+	end
+end
+
 #USER INTERFASE
 quit=false
-all_names=[]
-all_fakes=[]
+names={} 
 puts "Hello, and welcome to the fake name generator!"
 until quit
 	puts "Please insert your name and last name or q to quit"
@@ -57,10 +65,11 @@ until quit
 		quit=true
 	else
 		fake_name=fake your_name
-		all_names<<your_name
+		names[your_name]=fake_name
 		puts "Your fake name will be: #{fake_name}"
 	end
 end
 
-p all_names
+pretty names
+puts
 puts "Use your new name wisely"
