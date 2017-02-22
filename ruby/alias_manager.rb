@@ -12,22 +12,16 @@ def swap name
 end
 
 def consonant_change letter
-	if letter=="a" || letter=="A"
-		return "e"
-	elsif letter=="e" || letter=="E"
-		return "i"
-	elsif letter=="i" || letter=="I"
-		return "o"
-	elsif letter=="o"|| letter=="O"
-		return "u"
-	elsif letter=="u" || letter=="U"
-		return "b"
+	new_letter= letter.next
+	until $consonants.include? new_letter
+		new_letter=new_letter.next
 	end
+	return new_letter
 end
 
 def vowel_change letter
 	letter=="z" ? (new_letter="a"):	new_letter=letter.next
-	if $consonants.include? new_letter.downcase
+	if $consonants.include? new_letter
 		new_letter=new_letter.next
 		return new_letter
 	else
