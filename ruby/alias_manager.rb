@@ -4,7 +4,7 @@
 		swap the first and last name (split, reverse)
 		change all the vowels to next and consonants to next consonant (if/.next)
 =end
-$consonants=["a","e","i","o","u"]
+$consonants=["a","e","i","o","u","A","E","I","O","U"]
 
 def swap name
 	swap_name=name.split(" ").reverse!.join(" ")
@@ -12,29 +12,25 @@ def swap name
 end
 
 def consonant_change letter
-	if letter.downcase=="a"
+	if letter=="a" || letter=="A"
 		return "e"
-	elsif letter=="e"
+	elsif letter=="e" || letter=="E"
 		return "i"
-	elsif letter=="i"
+	elsif letter=="i" || letter=="I"
 		return "o"
-	elsif letter=="o"
+	elsif letter=="o"|| letter=="O"
 		return "u"
-	elsif letter=="u" || letter=="z"
+	elsif letter=="u" || letter=="U"
 		return "b"
 	end
 end
 
 def vowel_change letter
-	p letter
-	new_letter=letter.next
-	p new_letter
+	letter=="z" ? (new_letter="a"):	new_letter=letter.next
 	if $consonants.include? new_letter.downcase
 		new_letter=new_letter.next
-		p new_letter
 		return new_letter
 	else
-		p new_letter
 		return new_letter
 	end
 end
