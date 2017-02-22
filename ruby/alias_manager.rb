@@ -4,6 +4,7 @@
 		swap the first and last name (split, reverse)
 		change all the vowels to next and consonants to next consonant (if/.next)
 =end
+$consonants=["a","e","i","o","u"]
 
 def swap name
 	swap_name=name.split(" ").reverse!.join(" ")
@@ -22,7 +23,20 @@ def consonant_change letter
 	elsif letter=="u" || letter=="z"
 		return "b"
 	end
+end
 
+def vowel_change letter
+	p letter
+	new_letter=letter.next
+	p new_letter
+	if $consonants.include? new_letter.downcase
+		new_letter=new_letter.next
+		p new_letter
+		return new_letter
+	else
+		p new_letter
+		return new_letter
+	end
 end
 
 def fake name
@@ -30,12 +44,12 @@ def fake name
 	p swapped_name
 	name_array=swapped_name.split("")
 	name_array.map! do |letter|
-		if letter.downcase=="a"||letter=="e"||letter=="i" || letter=="o"||letter=="u"|| letter=="z"
+		if $consonants.include? letter
 			consonant_change letter
 		elsif letter==" "
 			" "
 		else
-			letter.next
+			vowel_change letter
 		end
 	end
 	fake_name=name_array.join("")
