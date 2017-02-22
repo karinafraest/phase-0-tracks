@@ -12,7 +12,7 @@ def swap name
 end
 
 def consonant_change letter
-	new_letter= letter.next
+	new_letter=("a" if letter=="u")||("A" if letter=="U")||letter.next
 	until $consonants.include? new_letter
 		new_letter=new_letter.next
 	end
@@ -20,7 +20,7 @@ def consonant_change letter
 end
 
 def vowel_change letter
-	letter=="z" ? (new_letter="a"):	new_letter=letter.next
+	new_letter=("a" if letter=="z")||("A" if letter=="Z")||letter.next
 	if $consonants.include? new_letter
 		new_letter=new_letter.next
 		return new_letter
@@ -47,6 +47,8 @@ end
 
 #USER INTERFASE
 quit=false
+all_names=[]
+all_fakes=[]
 puts "Hello, and welcome to the fake name generator!"
 until quit
 	puts "Please insert your name and last name or q to quit"
@@ -55,7 +57,10 @@ until quit
 		quit=true
 	else
 		fake_name=fake your_name
+		all_names<<your_name
 		puts "Your fake name will be: #{fake_name}"
 	end
 end
+
+p all_names
 puts "Use your new name wisely"
