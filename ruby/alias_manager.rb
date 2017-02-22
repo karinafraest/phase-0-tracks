@@ -31,7 +31,6 @@ end
 
 def fake name
 	swapped_name=swap(name)
-	p swapped_name
 	name_array=swapped_name.split("")
 	name_array.map! do |letter|
 		if $consonants.include? letter
@@ -45,6 +44,10 @@ def fake name
 	fake_name=name_array.join("")
 	return fake_name
 end	
-p fake "Felicia Torres"
 
-p fake "Amanda Orozco"
+#USER INTERFASE
+puts "Hello, and welcome to the fake name generator!"
+puts "Please insert your name and last name"
+your_name=gets.chomp
+fake_name=fake your_name
+puts "Your fake name will be: #{fake_name}"
