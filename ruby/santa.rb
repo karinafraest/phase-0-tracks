@@ -6,6 +6,10 @@ class Santa
 	def eat_milk_and_cookies(type)
 		puts "That was a good #{type}!!"
 	end #eat_milk_and_cookies
+
+	def initialize
+		puts "Initializing new instance of Santa..."
+	end
 end # class
 
 young_santa=Santa.new
