@@ -53,6 +53,10 @@ class Puppy
 	  	end
 	  	puts "Your dog should eat #{cup} cups #{times} times a day. #{type}"
 	end
+
+	def initialize
+		print "Initializing new puppy instance..."
+	end
 end
 
 
