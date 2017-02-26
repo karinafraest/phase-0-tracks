@@ -29,6 +29,30 @@ class Santa
 			end
 		end
 	end #brag
+
+	def celebrate_birthday(age)
+		@age=age+1
+		p @age
+	end
+
+	def reindeer_ranking
+		@reindeer_ranking
+	end
+
+	def get_mad_at(reindeer_name)
+		@reindeer_ranking=@reindeer_ranking- [reindeer_name]
+		@reindeer_ranking<<reindeer_name
+		p @reindeer_ranking
+	end
+
+	def gender_reasign=(new_gender)
+		@gender=new_gender
+		p @gender
+	end
+
+	def gender
+		@gender
+	end
 end # class
 
 #DRIVER CODE RELEASE 0
@@ -51,4 +75,8 @@ santas.each do |santa|
 	santa.speak
 	santa.brag
 	santa.eat_milk_and_cookies("chocolate chip cookie")
+	santa.celebrate_birthday(50)
+	santa.get_mad_at("Rudolph")
+	santa.gender_reasign="Attack helicopter"
+	santa.gender
 end
