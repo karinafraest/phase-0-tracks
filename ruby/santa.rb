@@ -1,4 +1,6 @@
 class Santa
+	attr_reader :age, :ethnicity
+	attr_accessor :gender
 	def initialize (gender,ethnicity)
 		puts "Initializing new instance of Santa..."
 		@gender=gender
@@ -44,27 +46,6 @@ class Santa
 		@reindeer_ranking<<reindeer_name
 		@reindeer_ranking
 	end
-
-	def gender_reasign=(new_gender)
-		@gender=new_gender
-		@gender
-	end
-
-	def gender
-		@gender
-	end
-
-	def age
-		@age
-	end
-
-	def ethnicity
-		@ethnicity
-	end
-
-	def reindeer_ranking
-		@reindeer_ranking
-	end
 end # class
 
 #DRIVER CODE RELEASE 0
@@ -92,8 +73,7 @@ santas.each do |santa|
 	santa.eat_milk_and_cookies("chocolate chip cookie")
 	santa.celebrate_birthday(50)
 	santa.get_mad_at("Rudolph")
-	santa.gender_reasign="Attack helicopter"
+	santa.gender="Attack helicopter"
 	p santa.age
-	p santa.gender
-	p santa.reindeer_ranking
+	p santa.ethnicity
 end
