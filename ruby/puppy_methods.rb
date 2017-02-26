@@ -1,3 +1,4 @@
+#PUPPY CLASS
 class Puppy
 
   def fetch(toy)
@@ -59,7 +60,7 @@ class Puppy
 	end
 end
 
-
+#DRIVE CODE FOR PUPPY CLASS
 martin=Puppy.new
 
 martin.fetch("ball")
@@ -67,3 +68,19 @@ martin.speak(5)
 martin.roll_over
 martin.dog_years(8)
 martin.amount_food(4,10)
+
+class Board_game
+	def roll_die (number)
+		i=0
+		until i==number
+		die=1 + rand(6)
+		i+=1
+		puts "Die #{i+1}: #{die}"
+
+		end
+	end
+end
+
+catan=Board_game.new
+
+catan.roll_die(2)
