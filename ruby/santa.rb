@@ -32,7 +32,7 @@ class Santa
 
 	def celebrate_birthday(age)
 		@age=age+1
-		p @age
+		@age
 	end
 
 	def reindeer_ranking
@@ -42,16 +42,28 @@ class Santa
 	def get_mad_at(reindeer_name)
 		@reindeer_ranking=@reindeer_ranking- [reindeer_name]
 		@reindeer_ranking<<reindeer_name
-		p @reindeer_ranking
+		@reindeer_ranking
 	end
 
 	def gender_reasign=(new_gender)
 		@gender=new_gender
-		p @gender
+		@gender
 	end
 
 	def gender
 		@gender
+	end
+
+	def age
+		@age
+	end
+
+	def ethnicity
+		@ethnicity
+	end
+
+	def reindeer_ranking
+		@reindeer_ranking
 	end
 end # class
 
@@ -61,6 +73,9 @@ end # class
 #young_santa.speak
 #young_santa.eat_milk_and_cookies("snickerdoodle")
 
+
+
+#DRIVER CODE RELEASE 1,2
 santas = []
 santas << Santa.new("agender", "black")
 santas << Santa.new("female", "Latino")
@@ -78,5 +93,7 @@ santas.each do |santa|
 	santa.celebrate_birthday(50)
 	santa.get_mad_at("Rudolph")
 	santa.gender_reasign="Attack helicopter"
-	santa.gender
+	p santa.age
+	p santa.gender
+	p santa.reindeer_ranking
 end
