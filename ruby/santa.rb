@@ -57,6 +57,7 @@ end # class
 
 
 #DRIVER CODE RELEASE 1,2
+=begin
 santas = []
 santas << Santa.new("agender", "black")
 santas << Santa.new("female", "Latino")
@@ -77,3 +78,32 @@ santas.each do |santa|
 	p santa.age
 	p santa.ethnicity
 end
+=end
+
+gender="prefer not to answer,Agender,Androgyne,Androgynous,Bigender,Cis,Cisgender,Cis Female,Cis Male,Cis Man,Cis Woman,Cisgender Female,Cisgender Male,Cisgender Man,Cisgender Woman,Female to Male,FTM,Gender Fluid,Gender Nonconforming,Gender Questioning,Gender Variant,Genderqueer,Intersex,Male to Female,MTF,Neither,Neutrois,Non-binary,Pangender,Trans,Trans*,Trans Female,Trans* Female,Trans Male,Trans* Male,Trans Man,Trans* Man,Trans Person,Trans* Person,Trans Woman,Trans* Woman,Transfeminine,Transgender,Transgender Female,Transgender Male,Transgender Man,Transgender Person,Transgender Woman,Transmasculine,Transsexual,Transsexual Female,Transsexual Male,Transsexual Man,Transsexual Person,Transsexual Woman,Two-Spirit,prefer not to answer"
+gender=gender.split(",")
+genders=gender.length
+
+ethnicity="Hispanic or latino,spanish origin,american indian,alaskan native,asian,native hawaiian,white,N/A,prefer not to answer"
+ethnicity=ethnicity.split(",")
+
+number_of_santas=100
+santas=[]
+
+until number_of_santas==0
+	this_gender=gender[1+rand(genders)]
+	this_ethnicity=ethnicity[1+rand(ethnicity.length)]
+
+	santas<<Santa.new(this_gender, this_ethnicity)
+
+	santas.each do |santa|
+	santa.celebrate_birthday(rand(0...140))
+	puts santa.age
+	puts santa.ethnicity
+	puts santa.gender
+	end
+	number_of_santas-=1	
+end
+
+
+
