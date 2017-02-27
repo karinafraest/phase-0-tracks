@@ -17,4 +17,16 @@ Eat
 Walk on leash
 Play dead
 Fetch
+
+
+
+
+class Puppy
+
+end
+
+fido=Puppy.new
+luna=Puppy.new
+
 =end
+
