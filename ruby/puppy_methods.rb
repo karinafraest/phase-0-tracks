@@ -59,7 +59,19 @@ class Kitten
 	end
 end
 
-mr_boots=Kitten.new
+kittens=[]
+counter=0
 
-mr_boots.purr
-p mr_boots.cat_years(2)
+until counter==50
+	kittens<<Kitten.new
+	counter+=1
+end
+
+kittens.each do |cat|
+	cat.purr
+	p cat.cat_years(5)
+end
+
+
+#mr_boots.purr
+#p mr_boots.cat_years(2)
