@@ -17,6 +17,7 @@ class Santa
 		puts "That was a good #{type}!!"
 	end #eat_milk_and_cookies
 
+	#RANDOM EXTRA METHOD
 	def brag
 		if !(@gender=="prefer not to say" || @gender=="N/A")
 			print "I am the best #{@gender} santa there is!"
@@ -101,6 +102,7 @@ until number_of_santas==0
 	puts santa.age
 	puts santa.ethnicity
 	puts santa.gender
+	#santa.gender="Attack Helicopter"
 	end
 	number_of_santas-=1	
 end
