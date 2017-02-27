@@ -19,7 +19,7 @@ module Shout
 	end
 
 	def happy_yell(words)
-		uts "#{words}!!!:D"
+		puts "#{words}!!!:D"
 	end
 end
 
