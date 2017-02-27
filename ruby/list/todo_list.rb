@@ -4,7 +4,7 @@ class TodoList
 	end
 
 	def get_items
-		return @list
+		@list
 	end
 
 	def add_item(item)
@@ -13,5 +13,9 @@ class TodoList
 
 	def delete_item(item)
 		@list.delete(item)
+	end
+
+	def get_item(num)
+		@list[num]
 	end
 end
