@@ -1,6 +1,6 @@
 
 class Game
-	attr_reader :guesses, :been_selected
+	attr_reader :guesses, :been_selected, :words
 	def initialize(words)
 		@words=words.split("")
 		@char="_"
@@ -123,10 +123,10 @@ class Game
 end #class
 
 #UI
-puts "Welcome to HANGMAN".center(30)
-stop=false
+puts "Welcome to HANGMAN".center(50)
 player=1
-until stop
+finish=""
+until finish.upcase=="N"
 	done=false
 	puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
 	selected_phrase=gets.chomp
@@ -156,8 +156,8 @@ until stop
 			this_game.show
 
 			if remaining==0
-				done=true
 				puts "You are out of turns! Sorry mate."
+				done=true
 			else
 				done=this_game.final(selected_phrase,coded_phrase)
 				if done
@@ -179,10 +179,6 @@ until stop
 
 	puts "Would you like to play again (Y/N)?"
 	finish=gets.chomp.upcase
-	if finish.upcase=="N" 
-		stop=true
-		p stop
-	end
 	if player==1
 		player==2
 	else
