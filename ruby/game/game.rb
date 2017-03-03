@@ -180,14 +180,14 @@ until finish.upcase=="N"
 		end
 	end
 
-puts "Would you like to play again (Y/N)?"
-finish=gets.chomp.upcase
-if player==1
-	player=2
-	other_player=1
-else
-	player=1 
-	other_player=2
+	puts "Would you like to play again (Y/N)?"
+	finish=gets.chomp.upcase
+	if player==1
+		player=2
+		other_player=1
+	else
+		player=1 
+		other_player=2
 	end
 end
 
