@@ -1,5 +1,4 @@
-#select number of guesses available
-#Setup the display for hidden word
+
 class Game
 	def initialize(words)
 		@words=words.split("")
@@ -12,11 +11,15 @@ class Game
 #Find number of guesses available
 #input: words
 #steps: find the amount of letters.
-#output: fixnum
+#output: number of guesses
 	def guesses
 		if @guesses==0
 			size=@words.length
-			@guesses=size+(size/3)#limite maximo
+			if size>15
+				@guesses=15
+			else
+				@guesses=size+(size/3)
+			end
 		end
 		@guesses
 	end
@@ -30,10 +33,10 @@ class Game
 		@guesses
 	end
 
-#Display the hidden word
+#Create the hidden word
 #input: character
-#steps: iterate through string. Change every letter to _, add spaces"
-#output: array
+#steps: iterate through string. Change every letter to _,
+#output: array hidden word
 	def create_hidden_word
 		@hidden_word=@words
 		encoded=[]
@@ -48,6 +51,10 @@ class Game
 		@hidden_word
 	end
 
+#Display the hidden word
+#input: word
+#steps: iterate through array, change spaces to /, convert to string
+#output: hidden word as string
 	def show 
 		encoded=[]
 		i=0
@@ -81,9 +88,9 @@ class Game
 	end
 
 #gives final message
-#input won/lost
-#steps if won the message is cheerful, if lost the message is evil
-#output words
+#input initial word, final array
+#steps check if the word is equal to the final word
+#output true/false
 	def final(initial_word,final_array)
 		if final_array.instance_of?(String)
 			final_word=final_array
@@ -96,7 +103,7 @@ class Game
 		won
 	end
 
-	#check character
+#check character
 #input character
 #steps check if the letter is actually a letter. then checks if that letter has been selected before
 #output true/false
@@ -132,7 +139,7 @@ until stop
 	puts "You have #{guesses} guesses"
 
 		until done
-		puts "PLAYER2: Select a letter"
+		puts "PLAYER2: Select a letter or take a guess at the word/phrase"
 		letter=gets.chomp
 		if letter.length>1
 		 	done=this_game.final(selected_phrase,letter)
