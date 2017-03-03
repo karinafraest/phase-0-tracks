@@ -1,4 +1,3 @@
-
 class Game
 	attr_reader :guesses, :been_selected, :words
 	def initialize(words)
@@ -81,9 +80,17 @@ class Game
 #output array
 	def choose(selected)
 		indexes=@words.map.with_index{ |letter,index| index if letter==selected}
-		indexes=indexes.compact!
+		upcase_indexes=@words.map.with_index{ |letter,index| index if letter.downcase==selected}
+		indexes.compact!
+		upcase_indexes.compact!
+		upcase_indexes=upcase_indexes-indexes
+
 		indexes.each do |index|
 			@hidden_word[index] = selected
+		end
+
+		upcase_indexes.each do |index|
+			@hidden_word[index] = selected.upcase
 		end
 		@hidden_word
 	end
@@ -111,8 +118,7 @@ class Game
 	def check(letter=@char)
 		@char=letter
 		alphabet="abcdefjhijklmnopqrstuvwxyz".split("")
-		alphabet
-		if alphabet.include?(@char) && !@been_selected.include?(@char)
+		if alphabet.include?(@char.downcase) && !@been_selected.include?(@char.downcase)
 			@been_selected<<@char
 			checked=true
 		elsif @been_selected.include?(@char)
@@ -174,14 +180,14 @@ until finish.upcase=="N"
 		end
 	end
 
-	puts "Would you like to play again (Y/N)?"
-	finish=gets.chomp.upcase
-	if player==1
-		player=2
-		other_player=1
-	else
-		player=1 
-		other_player=2
+puts "Would you like to play again (Y/N)?"
+finish=gets.chomp.upcase
+if player==1
+	player=2
+	other_player=1
+else
+	player=1 
+	other_player=2
 	end
 end
 
