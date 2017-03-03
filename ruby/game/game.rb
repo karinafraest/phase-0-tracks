@@ -1,5 +1,5 @@
-
 class Game
+	attr_reader :guesses, :been_selected, :words
 	def initialize(words)
 		@words=words.split("")
 		@char="_"
@@ -80,9 +80,17 @@ class Game
 #output array
 	def choose(selected)
 		indexes=@words.map.with_index{ |letter,index| index if letter==selected}
-		indexes=indexes.compact!
+		upcase_indexes=@words.map.with_index{ |letter,index| index if letter.downcase==selected}
+		indexes.compact!
+		upcase_indexes.compact!
+		upcase_indexes=upcase_indexes-indexes
+
 		indexes.each do |index|
 			@hidden_word[index] = selected
+		end
+
+		upcase_indexes.each do |index|
+			@hidden_word[index] = selected.upcase
 		end
 		@hidden_word
 	end
@@ -110,8 +118,7 @@ class Game
 	def check(letter=@char)
 		@char=letter
 		alphabet="abcdefjhijklmnopqrstuvwxyz".split("")
-		alphabet
-		if alphabet.include?(@char) && !@been_selected.include?(@char)
+		if alphabet.include?(@char.downcase) && !@been_selected.include?(@char.downcase)
 			@been_selected<<@char
 			checked=true
 		elsif @been_selected.include?(@char)
@@ -122,11 +129,14 @@ class Game
 end #class
 
 #UI
-puts "Welcome to HANGMAN".center(30)
-stop=false
-until stop
-	done=false
-	puts "PLAYER1: Insert a word or phrase without special characters :)"
+puts "Welcome to HANGMAN".center(50)
+
+finish=""
+player=1
+other_player=2
+
+until finish.upcase=="N"
+	puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
 	selected_phrase=gets.chomp
 	20.times{|x| puts " "}
 	puts "Let's begin!"
@@ -138,12 +148,11 @@ until stop
 	remaining=guesses
 	puts "You have #{guesses} guesses"
 
-		until done
+	until remaining==0
 		puts "PLAYER2: Select a letter or take a guess at the word/phrase"
 		letter=gets.chomp
 		if letter.length>1
-		 	done=this_game.final(selected_phrase,letter)
-		 	if done
+		 	if this_game.final(selected_phrase,letter)
 		  		puts "WHAT? that is insane, you got it right!"
 		  	else
 		  		puts "Noup, that is wrong!"
@@ -154,32 +163,31 @@ until stop
 			this_game.show
 
 			if remaining==0
-				done=true
 				puts "You are out of turns! Sorry mate."
-			else
-				done=this_game.final(selected_phrase,coded_phrase)
-				if done
+			elsif this_game.final(selected_phrase,coded_phrase)
 					puts "You are an amazing human being. You just won!!"
+					remaining=0
+			else
+				valid_choice=this_game.check(letter)
+				if valid_choice
+					remaining=this_game.remaining
+					if remaining>0
+						puts "Previously selected letters: #{this_game.been_selected.join("")}"
+					end
 				end
-			end
-
-			valid_choice=this_game.check(letter)
-
-			if valid_choice
-				remaining=this_game.remaining
-				if remaining>0 && !done
-					puts "You have #{remaining} chances remaining."
-				end
+				puts "You have #{remaining} chances remaining."
 			end
 		end
-
 	end
 
 	puts "Would you like to play again (Y/N)?"
 	finish=gets.chomp.upcase
-	if finish.upcase=="N" 
-		stop=true
-		p stop
+	if player==1
+		player=2
+		other_player=1
+	else
+		player=1 
+		other_player=2
 	end
 end
 
