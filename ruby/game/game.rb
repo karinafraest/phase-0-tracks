@@ -124,10 +124,12 @@ end #class
 
 #UI
 puts "Welcome to HANGMAN".center(50)
-player=1
+
 finish=""
+player=1
+other_player=2
+
 until finish.upcase=="N"
-	done=false
 	puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
 	selected_phrase=gets.chomp
 	20.times{|x| puts " "}
@@ -140,12 +142,11 @@ until finish.upcase=="N"
 	remaining=guesses
 	puts "You have #{guesses} guesses"
 
-		until done
+	until remaining==0
 		puts "PLAYER2: Select a letter or take a guess at the word/phrase"
 		letter=gets.chomp
 		if letter.length>1
-		 	done=this_game.final(selected_phrase,letter)
-		 	if done
+		 	if this_game.final(selected_phrase,letter)
 		  		puts "WHAT? that is insane, you got it right!"
 		  	else
 		  		puts "Noup, that is wrong!"
@@ -157,32 +158,30 @@ until finish.upcase=="N"
 
 			if remaining==0
 				puts "You are out of turns! Sorry mate."
-				done=true
-			else
-				done=this_game.final(selected_phrase,coded_phrase)
-				if done
+			elsif this_game.final(selected_phrase,coded_phrase)
 					puts "You are an amazing human being. You just won!!"
+					remaining=0
+			else
+				valid_choice=this_game.check(letter)
+				if valid_choice
+					remaining=this_game.remaining
+					if remaining>0
+						puts "Previously selected letters: #{this_game.been_selected.join("")}"
+					end
 				end
-			end
-
-			valid_choice=this_game.check(letter)
-
-			if valid_choice
-				remaining=this_game.remaining
-				if remaining>0 && !done
-					puts "You have #{remaining} chances remaining."
-				end
+				puts "You have #{remaining} chances remaining."
 			end
 		end
-
 	end
 
 	puts "Would you like to play again (Y/N)?"
 	finish=gets.chomp.upcase
 	if player==1
-		player==2
+		player=2
+		other_player=1
 	else
-		player==1
+		player=1 
+		other_player=2
 	end
 end
 
