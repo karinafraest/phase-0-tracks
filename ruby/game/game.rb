@@ -1,5 +1,6 @@
 
 class Game
+	attr_reader :guesses, :been_selected
 	def initialize(words)
 		@words=words.split("")
 		@char="_"
@@ -124,9 +125,10 @@ end #class
 #UI
 puts "Welcome to HANGMAN".center(30)
 stop=false
+player=1
 until stop
 	done=false
-	puts "PLAYER1: Insert a word or phrase without special characters :)"
+	puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
 	selected_phrase=gets.chomp
 	20.times{|x| puts " "}
 	puts "Let's begin!"
@@ -180,6 +182,11 @@ until stop
 	if finish.upcase=="N" 
 		stop=true
 		p stop
+	end
+	if player==1
+		player==2
+	else
+		player==1
 	end
 end
 
