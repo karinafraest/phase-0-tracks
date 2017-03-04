@@ -16,9 +16,9 @@ class Game
 		if @guesses==0
 			size=@words.length
 			if size>15
-				@guesses=15
+				@guesses=16
 			else
-				@guesses=size+(size/3)
+				@guesses=size+(size/2)
 			end
 		end
 		@guesses
@@ -134,8 +134,15 @@ player=1
 other_player=2
 
 until finish.upcase=="N"
-	puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
-	selected_phrase=gets.chomp
+	selected_phrase=""
+	until selected_phrase.length>3
+		puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
+		selected_phrase=gets.chomp
+
+		if selected_phrase.length<3
+			puts "That's not a word or phrase!"
+		end
+	end
 	20.times{|x| puts " "}
 	puts "Let's begin!"
 
