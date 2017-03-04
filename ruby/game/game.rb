@@ -1,5 +1,5 @@
 class Game
-	attr_reader :guesses, :been_selected, :words
+	attr_reader :guesses, :been_selected, :words, :hidden_word
 	def initialize(words)
 		@words=words.split("")
 		@char="_"
@@ -16,9 +16,9 @@ class Game
 		if @guesses==0
 			size=@words.length
 			if size>15
-				@guesses=15
+				@guesses=16
 			else
-				@guesses=size+(size/3)
+				@guesses=size+(size/2)
 			end
 		end
 		@guesses
@@ -48,29 +48,6 @@ class Game
 			end
 		end
 		@hidden_word=encoded
-		@hidden_word
-	end
-
-#Display the hidden word
-#input: word
-#steps: iterate through array, change spaces to /, convert to string
-#output: hidden word as string
-	def show 
-		encoded=[]
-		i=0
-		@hidden_word.each do |letter|
-			if letter==" "
-				encoded<<"/"
-			else
-				encoded<<letter
-			end
-			if i<@hidden_word.length-1
-				encoded<<" "
-			end
-			i+=1
-		end
-		encoded=encoded.join("")
-		puts "#{encoded}"
 		@hidden_word
 	end
 
@@ -128,6 +105,27 @@ class Game
 	end
 end #class
 
+#Display the hidden word
+#input: word
+#steps: iterate through array, change spaces to /, convert to string
+#output: hidden word as string
+	def to_s
+		encoded=[]
+		i=0
+		@hidden_word.each do |letter|
+			if letter==" "
+				encoded<<"/"
+			else
+				encoded<<letter
+			end
+			if i<@hidden_word.length-1
+				encoded<<" "
+			end
+			i+=1
+		end
+		encoded=encoded.join("")
+		encoded
+	end
 #UI
 puts "Welcome to HANGMAN".center(50)
 
@@ -136,17 +134,24 @@ player=1
 other_player=2
 
 until finish.upcase=="N"
-	puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
-	selected_phrase=gets.chomp
+	selected_phrase=""
+	until selected_phrase.length>3
+		puts "PLAYER#{player}: Insert a word or phrase without special characters :)"
+		selected_phrase=gets.chomp
+
+		if selected_phrase.length<3
+			puts "That's not a word or phrase!"
+		end
+	end
 	20.times{|x| puts " "}
 	puts "Let's begin!"
 
 	this_game=Game.new(selected_phrase)
-	coded_phrase=this_game.create_hidden_word
-	this_game.show
-	guesses=this_game.guesses
-	remaining=guesses
-	puts "You have #{guesses} guesses"
+	this_game.create_hidden_word
+	this_game.guesses
+	remaining=this_game.guesses
+	puts "You have #{this_game.guesses} guesses"
+	puts this_game
 
 	until remaining==0
 		puts "PLAYER2: Select a letter or take a guess at the word/phrase"
@@ -160,11 +165,11 @@ until finish.upcase=="N"
 		  	end
 		 else
 			selected=this_game.choose(letter)
-			this_game.show
+			puts this_game
 
 			if remaining==0
 				puts "You are out of turns! Sorry mate."
-			elsif this_game.final(selected_phrase,coded_phrase)
+			elsif this_game.final(selected_phrase, this_game.hidden_word)
 					puts "You are an amazing human being. You just won!!"
 					remaining=0
 			else
