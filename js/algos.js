@@ -60,3 +60,7 @@ function arrayGenerator(size){
 	return newArray;
 }
 
+for(var i=2; i<12; i++){
+	var anArray=(arrayGenerator(i));
+	console.log(longPhrase(anArray));
+}
