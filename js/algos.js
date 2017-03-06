@@ -14,7 +14,7 @@ function longPhrase(list){
 	}
 	return longestPhrase
 }
-
+/*
 var list=["long phrase", "even longer phrase", "the longest phrase ever", "just a phrase"];
 
 console.log(longPhrase(list))
@@ -22,3 +22,12 @@ console.log(longPhrase(list))
 var otherList=["Ruby", "Python", "C++","JavaScript", "JQuery","HTML", "Css"];
 
 console.log(longPhrase(otherList))
+*/
+
+//Input: length
+//Steps: Generate a random size word until the length is equal to the size of the array
+//      To generate the random size word: Choose a random rize from 1 to 10
+//                                        For each of those, generate a random letter and add it to the word
+//                                        Add the word to the array
+//Output: Array of strings of given length
+
