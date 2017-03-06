@@ -11,5 +11,13 @@ function reverse(word){
 	return new_word;
 }
 
+
+//Driver code
 reverse("hello");
-reverse("i cannot believe it is not butter")
+var reversed_word=reverse("i cannot believe it is not butter");
+
+if (true && 1==1){
+	console.log (reversed_word);
+}else{
+	console.log("You got here somehow");
+}
