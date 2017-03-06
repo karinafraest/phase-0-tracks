@@ -31,3 +31,30 @@ console.log(longPhrase(otherList))
 //                                        Add the word to the array
 //Output: Array of strings of given length
 
+//GENERATES A NUMBER FROM 0 TO 25
+function randomLetter(min,max){
+	return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+//GENERATES A WORD WITH A RANDOM LENGTH
+function generateWord(){
+	var new_word="";
+	var alphabet="abcdefghijklmnopqrstuvwxyz"
+	var word_size=Math.floor((Math.random()*10+1))
+	for(var i=1; i<word_size;i++){
+		var letter=alphabet[randomLetter(0,25)];
+		new_word=new_word+letter;
+	}
+	return new_word
+}
+
+//GENERATES AN ARRAY WITH A GIVEN NUMBER OF WORDS
+function arrayGenerator(size){
+	var newArray=[];
+	for(var i=0; i<size; i++){
+		newArray[i]=generateWord();
+	}
+	return newArray;
+}
+
+console.log(arrayGenerator(3));
