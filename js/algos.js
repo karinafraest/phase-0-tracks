@@ -32,17 +32,20 @@ console.log(longPhrase(otherList))
 //Output: Array of strings of given length
 
 //GENERATES A NUMBER FROM 0 TO 25
-function randomLetter(min,max){
-	return Math.floor(Math.random()*(max-min+1))+min;
+function randomLetter(){
+	var min=0;
+	var max=25;
+	var alphabet="abcdefghijklmnopqrstuvwxyz";
+	var index=Math.floor(Math.random()*(max-min+1))+min;
+	return alphabet[index];
 }
 
 //GENERATES A WORD WITH A RANDOM LENGTH
 function generateWord(){
 	var new_word="";
-	var alphabet="abcdefghijklmnopqrstuvwxyz"
 	var word_size=Math.floor((Math.random()*10+1))
-	for(var i=1; i<word_size;i++){
-		var letter=alphabet[randomLetter(0,25)];
+	for(var i=0; i<word_size; i++){
+		var letter=randomLetter();
 		new_word=new_word+letter;
 	}
 	return new_word
@@ -57,4 +60,3 @@ function arrayGenerator(size){
 	return newArray;
 }
 
-console.log(arrayGenerator(3));
