@@ -72,3 +72,19 @@ end
 
 #=======================================================================
 # Reflection Section
+#What are the differences between the two different hash syntaxes shown in the state_data file?
+#"Key"=> "value" <----The key is a string. If printed, it looks pretty
+#key: "value" <----The keyis a symbol, symbols are unique, you can't have a symbol with spaces(name_of_movie instead of "Name of movie")
+
+#What does require_relative do? How is it different from require?
+#Calls data in a file that is in the same directory as the file you are working on.
+#Require is somewhere in the rooted directory of Ruby, it stores Gems.
+
+#What are some ways to iterate through a hash?
+#using a loop that calls both the key and value
+
+#When refactoring virus_effects, what stood out to you about the variables, if anything?
+#They are floats and work different than integers. They have to be rounded. If you add an integer to a float it gives you a float.
+
+#What concept did you most solidify in this challenge?
+#How to iterate nested data. I keep forgetting that there are easier ways to do things.
