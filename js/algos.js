@@ -34,10 +34,12 @@ function share_key_value(list1,list2){
 	var shared=false;
 	for (var name in list1){
 		for (var other_name in list2){
+			if (name===other_name){
 			if (list1[name]===list2[other_name]){
 				shared=true;
 				break;
 			}
+		}
 		}
 		}
 	return shared;
