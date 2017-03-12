@@ -30,7 +30,7 @@ console.log(longPhrase(otherList))
 //steps: iterate through each value in each object
 //If one of the values of object 1 is equal to one of the values of object 2 they share a value
 //Output: true or false
-function share_key_value(list1,list2){
+function shareKeyValue(list1,list2){
 	var shared=false;
 	for (var name in list1){
 		for (var other_name in list2){
@@ -63,13 +63,13 @@ function randomLetter(){
 
 //GENERATES A WORD WITH A RANDOM LENGTH
 function generateWord(){
-	var new_word="";
-	var word_size=Math.floor((Math.random()*10+1))
-	for(var i=0; i<word_size; i++){
+	var newWord="";
+	var wordSize=Math.floor((Math.random()*10+1))
+	for(var i=0; i<wordSize; i++){
 		var letter=randomLetter();
-		new_word=new_word+letter;
+		newWord=newWord+letter;
 	}
-	return new_word
+	return newWord
 }
 
 //GENERATES AN ARRAY WITH A GIVEN NUMBER OF WORDS
@@ -91,17 +91,17 @@ for(var i=2; i<12; i++){
 var one={name: "Steven", age: 54};
 var two={name: "Tamir", age: 54};
 
-console.log(share_key_value(one,two));
+console.log(shareKeyValue(one,two));
 
 //Returns false
 var three={name: "Steven", age: 51};
 var four={name: "Tamir", age: 53};
 
-console.log(share_key_value(three,four));
+console.log(shareKeyValue(three,four));
 
 //Returns false
 
 var five={name: "Steven", age: 54};
 var six={name: "Tamir", house_number: 54};
 
-console.log(share_key_value(five,six));
+console.log(shareKeyValue(five,six));
