@@ -86,9 +86,22 @@ for(var i=2; i<12; i++){
 	console.log(longPhrase(anArray));
 }
 
+
+//Returns true
 var one={name: "Steven", age: 54};
-var two={name: "Tamir", age: 54}
+var two={name: "Tamir", age: 54};
 
 console.log(share_key_value(one,two));
 
+//Returns false
+var three={name: "Steven", age: 51};
+var four={name: "Tamir", age: 53};
 
+console.log(share_key_value(three,four));
+
+//Returns false
+
+var five={name: "Steven", age: 54};
+var six={name: "Tamir", house_number: 54};
+
+console.log(share_key_value(five,six));
