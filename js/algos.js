@@ -24,6 +24,27 @@ var otherList=["Ruby", "Python", "C++","JavaScript", "JQuery","HTML", "Css"];
 console.log(longPhrase(otherList))
 */
 
+
+//RELEASE1
+//Input: two objects
+//steps: iterate through each value in each object
+//If one of the values of object 1 is equal to one of the values of object 2 they share a value
+//Output: true or false
+function share_key_value(list1,list2){
+	var shared=false;
+	for (var name in list1){
+		for (var other_name in list2){
+			if (name===other_name){
+			if (list1[name]===list2[other_name]){
+				shared=true;
+				break;
+			}
+		}
+		}
+		}
+	return shared;
+}
+
 //Input: length
 //Steps: Generate a random size word until the length is equal to the size of the array
 //      To generate the random size word: Choose a random rize from 1 to 10
@@ -64,3 +85,23 @@ for(var i=2; i<12; i++){
 	var anArray=(arrayGenerator(i));
 	console.log(longPhrase(anArray));
 }
+
+
+//Returns true
+var one={name: "Steven", age: 54};
+var two={name: "Tamir", age: 54};
+
+console.log(share_key_value(one,two));
+
+//Returns false
+var three={name: "Steven", age: 51};
+var four={name: "Tamir", age: 53};
+
+console.log(share_key_value(three,four));
+
+//Returns false
+
+var five={name: "Steven", age: 54};
+var six={name: "Tamir", house_number: 54};
+
+console.log(share_key_value(five,six));
