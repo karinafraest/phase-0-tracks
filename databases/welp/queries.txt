@@ -1,0 +1,30 @@
+JOIN THREE TABLES
+
+SELECT * FROM  businesses, reviews, users WHERE reviews.business_id=businesses.id AND reviews.user_id=users.id;
+id          name                          id          stars       comment            business_id  user_id     id          first_name  last_name
+----------  ----------------------------  ----------  ----------  -----------------  -----------  ----------  ----------  ----------  ----------
+1           Grundy Hollow Wedding Chapel  1           5           Best chapel ever!  1            5           5           Holly       Berry
+1           Grundy Hollow Wedding Chapel  2           0           Worst chapel ever  1            6           6           Merryl      Streepman
+6           Sushi World                   3           2           Good fish :)       6            7           7           Denzel      George
+4           Lotus Yoga                    4           4           Very relaxing, an  4            2           2           Mandy       Kaling
+7           JoeBob's Sportz Barn          5           3           Awesome burguers,  7            4           4           Steven      Wonder
+
+
+
+SELECT RELEVANT INFORMATION FROM THREE TABLES
+SELECT users.first_name, businesses.name, reviews.stars, reviews.comment FROM reviews JOIN businesses, users ON reviews.business_id=businesses.id AND reviews.user_id=users.id;
+first_name  name                          stars       comment
+----------  ----------------------------  ----------  -----------------
+Holly       Grundy Hollow Wedding Chapel  5           Best chapel ever!
+Merryl      Grundy Hollow Wedding Chapel  0           Worst chapel ever
+Denzel      Sushi World                   2           Good fish :)
+Mandy       Lotus Yoga                    4           Very relaxing, an
+Steven      JoeBob's Sportz Barn          3           Awesome burguers,
+
+
+REVIEW DATA OF ALL THREE TABLES FOR JUST ONE BUSINESS
+SELECT users.first_name, businesses.name, reviews.stars, reviews.comment FROM reviews JOIN businesses, users ON reviews.business_id=businesses.id AND reviews.user_id=users.id WHERE businesses.name="Grundy Hollow Wedding Chapel";
+first_name  name                          stars       comment
+----------  ----------------------------  ----------  -----------------
+Holly       Grundy Hollow Wedding Chapel  5           Best chapel ever!
+Merryl      Grundy Hollow Wedding Chapel  0           Worst chapel ever
