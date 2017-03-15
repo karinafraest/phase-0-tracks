@@ -1,0 +1,79 @@
+Display the information in one table (either table is fine).
+sqlite> SELECT * FROM ice_cream;
+1|Strawberry|300|1
+2|Strawberry|300|2
+3|Chocolate|300|2
+4|Vanilla|100|1
+5|Vanilla|400|4
+6|Tequila|150|5
+7|Mint Chocolate|140|3
+
+Update an item that meets some condition (you can choose a condition that makes sense).
+sqlite> UPDATE ice_cream SET type_id=1 WHERE id=3;
+sqlite> SELECT * FROM ice_cream;
+1|Strawberry|300|1
+2|Strawberry|300|2
+3|Chocolate|300|1
+4|Vanilla|100|1
+5|Vanilla|400|4
+6|Tequila|150|5
+7|Mint Chocolate|140|3
+
+Display the information in both tables using one query.
+sqlite> SELECT * FROM ice_cream, type_of_ice_cream WHERE ice_cream.type_id = type_of_ice_cream.id;
+1|Strawberry|300|1|1|Milk based
+2|Strawberry|300|2|2|Water based
+3|Chocolate|300|1|1|Milk based
+4|Vanilla|100|1|1|Milk based
+5|Vanilla|400|4|4|Organic
+6|Tequila|150|5|5|Alcohol
+7|Mint Chocolate|140|3|3|Low Fat
+
+Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+sqlite> SELECT ice_cream.flavor, type_of_ice_cream.type FROM ice_cream JOIN type_of_ice_cream ON ice_cream.type_id= type_of_ice_cream.id;
+Strawberry|Milk based
+Strawberry|Water based
+Chocolate|Milk based
+Vanilla|Milk based
+Vanilla|Organic
+Tequila|Alcohol
+Mint Chocolate|Low Fat
+
+Delete an item that meets some condition (you can choose a condition that makes sense).
+sqlite> DELETE FROM ice_cream WHERE type_id=5;
+sqlite> SELECT * FROM ice_cream;
+1|Strawberry|300|1
+2|Strawberry|300|2
+3|Chocolate|300|1
+4|Vanilla|100|1
+5|Vanilla|400|4
+7|Mint Chocolate|140|3
+
+
+OTHER JOINS
+SQL -Inner Join, Left Join, Right Join, Full Join
+SQLite3 does not support Right Join, nor Full Outer Join.
+
+sqlite> SELECT ice_cream.flavor, type_of_ice_cream.type FROM ice_cream INNER JOIN type_of_ice_cream ON ice_cream.type_id=type_of_ice_cream.id;
+Strawberry|Milk based
+Strawberry|Water based
+Chocolate|Milk based
+Vanilla|Milk based
+Vanilla|Organic
+Mint Chocolate|Low Fat
+sqlite> SELECT ice_cream.flavor, type_of_ice_cream.type FROM ice_cream LEFT JOIN type_of_ice_cream ON ice_cream.type_id=type_of_ice_cream.id;
+Strawberry|Milk based
+Strawberry|Water based
+Chocolate|Milk based
+Vanilla|Milk based
+Vanilla|Organic
+Mint Chocolate|Low Fat
+sqlite> SELECT * FROM ice_cream LEFT JOIN type_of_ice_cream ON ice_cream.type_id=type_of_ice_cream.id;
+1|Strawberry|300|1|1|Milk based
+2|Strawberry|300|2|2|Water based
+3|Chocolate|300|1|1|Milk based
+4|Vanilla|100|1|1|Milk based
+5|Vanilla|400|4|4|Organic
+7|Mint Chocolate|140|3|3|Low Fat
+sqlite> SELECT * from ice_cream RIGHT JOIN type_of_ice_cream ON ice_cream.type_id=type_of_ice_cream.id;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
