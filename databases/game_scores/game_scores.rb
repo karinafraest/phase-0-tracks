@@ -15,13 +15,23 @@ create_table_cmd = <<-SQL
 SQL
 
 db.execute(create_table_cmd)
+
 #CREATE A PLAYER TABLE
+create_table_players = <<-SQL
+	CREATE TABLE IF NOT EXISTS players(
+		id INTEGER PRIMARY KEY,
+		first_name VARCHAR(255),
+		last_name VARCHAR(255)
+		)
+	SQL
+db.execute(create_table_players)
+
 	#ID NAME, LAST NAME
 #CREATE A SCORE TABLE
 	#ID, DATE, GAME NUMBER, GAME, PLAYER, SCORE
 #ADD A BOARD GAME TO THE LIST IF IT IS NOT ALREADY THERE
 
-def add_game(db,name,cost,times_played)
+def add_game(db,name,cost,times_played=0)
 	current_games=db.execute("SELECT * FROM board_games")
 	included=false
 	if current_games.length==0
@@ -44,13 +54,16 @@ end
 #ADD A PLAYER TO THE LIST IF IT IS NOT ALREADY THERE
 #ADD A SCORE FOR A GAME
 #REVIEW BOARD GAME TABLE
-def view_games(db)
-	current_games=db.execute("SELECT * FROM board_games")
-	puts "Game".ljust(30)+"Cost".ljust(30)+"Times Played".rjust(30)
-	current_games.each do |game|
-		puts "#{game['name']}".ljust(30)+"#{game['cost']}".ljust(30)+"#{game['times_played']}" .rjust(30)
+def view_games(db,name="all")
+	if name=="all"
+		current_games=db.execute("SELECT * FROM board_games")
+		puts "Game".ljust(30)+"Cost".ljust(30)+"Times Played".rjust(30)
+		current_games.each do |game|
+			puts "#{game['name']}".ljust(30)+"#{game['cost']}".ljust(30)+"#{game['times_played']}" .rjust(30)
+		end
 	end
 end
+#later I can display just the one they need
 
 #REVIEW PLAYER TABLE
 #REVIEW SCORE TABLE
