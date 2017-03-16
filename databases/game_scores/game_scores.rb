@@ -1,36 +1,48 @@
 require 'sqlite3'
-#CREATE A NEW DATABASE
-db=SQLite3::Database.new("board_games.db")
-db.results_as_hash = true
 
-#CREATE A BOARD GAME TABLE
-	#ID NAME COST TIMES PLAYED
-create_table_boardgames = <<-SQL
-  CREATE TABLE IF NOT EXISTS board_games(
-    id INTEGER PRIMARY KEY,
-    name VARCHAR(255),
-    cost INTEGER,
-    times_played INTEGER
-  )
-SQL
+	#CREATE A NEW DATABASE
+	db=SQLite3::Database.new("board_games.db")
+	db.results_as_hash = true	
 
-#CREATE A PLAYER TABLE
-#ID NAME, LAST NAME
-create_table_players = <<-SQL
-	CREATE TABLE IF NOT EXISTS players(
-		id INTEGER PRIMARY KEY,
-		first_name VARCHAR(255),
-		last_name VARCHAR(255)
-		)
+	#CREATE A BOARD GAME TABLE
+		#ID NAME COST TIMES PLAYED
+	create_table_boardgames = <<-SQL
+	  CREATE TABLE IF NOT EXISTS board_games(
+	    id INTEGER PRIMARY KEY,
+	    name VARCHAR(255),
+	    cost INTEGER,
+	    times_played INTEGER
+	  )
 	SQL
-db.execute(create_table_players)
-db.execute(create_table_boardgames)
 
+	#CREATE A PLAYER TABLE
+	#ID NAME, LAST NAME
+	create_table_players = <<-SQL
+		CREATE TABLE IF NOT EXISTS players(
+			id INTEGER PRIMARY KEY,
+			first_name VARCHAR(255),
+			last_name VARCHAR(255)
+			)
+		SQL
+
+	#CREATE A SCORE TABLE
+		#ID, DATE, GAME NUMBER, GAME, PLAYER, SCORE
+	create_table_scores = <<-SQL
+		CREATE TABLE IF NOT EXISTS scores(
+			id INTEGER PRIMARY KEY,
+			date VARCHAR(255),
+			game_id INTEGER,
+			game_per_day INTEGER,
+			player_id INTEGER,
+			FOREIGN KEY(game_id) REFERENCES board_games(id),
+			FOREIGN KEY(player_id) REFERENCES players(id)
+			)	
+	SQL
+
+	db.execute(create_table_players)
+	db.execute(create_table_boardgames)
+	db.execute(create_table_scores)
 	
-#CREATE A SCORE TABLE
-	#ID, DATE, GAME NUMBER, GAME, PLAYER, SCORE
-
-
 #ADD A BOARD GAME TO THE LIST IF IT IS NOT ALREADY THERE
 def add_game(db,name,cost,times_played=0)
 	current_games=db.execute("SELECT * FROM board_games")
@@ -97,6 +109,7 @@ def view_players(db,name="all")
 end
 #REVIEW SCORE TABLE
 
+#DRIVER CODE
 add_game(db,"Settlers of Cattan", 60,20)
 add_game(db,"Splendor", 30.23,15)
 add_game(db, "Pandemic",28,6)
