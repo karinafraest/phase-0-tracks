@@ -61,13 +61,13 @@ def add_player(db,first_name,last_name)
 		db.execute("INSERT INTO players(first_name,last_name) VALUES(?,?)",[first_name,last_name])
 	else
 		current_names.each do |name|
-			included=true if name["name"]==name
+			included=true if name["first_name"]==first_name && name['last_name']==last_name
 		end
 		if included==false
 			puts "#{first_name} #{last_name} added"
 			db.execute("INSERT INTO players(first_name,last_name) VALUES(?,?)",[first_name,last_name])
 		else
-			puts "#{name} was already saved"
+			puts "#{first_name} #{last_name} was already saved"
 		end
 	end
 end
