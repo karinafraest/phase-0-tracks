@@ -143,6 +143,15 @@ def view_players(db,name="all")
 	end
 end
 #REVIEW SCORE TABLE
+def view_scores(db)
+	current_scores=db.execute("SELECT scores.date, scores.games_per_day, board_games.name, players.first_name, players.last_name, scores.score FROM scores JOIN players, board_games ON scores.player_id=players.id AND scores.game_id=board_games.id;")
+	puts "Scores"
+	puts "Date".ljust(15)+"Number".ljust(10)+"Game".ljust(20)+"Name".ljust(30)+"Score".ljust(50)
+	current_scores.each do |score|
+		puts "#{score['date']}".ljust(15)+"#{score['games_per_day']}".ljust(10)+"#{score['name']}".ljust(20)+"#{score['first_name']} #{score['last_name']}".ljust(30)+"#{score['score']}".ljust(50)
+	end
+end
+
 
 #DRIVER CODE
 #add_game(db,"Settlers of Cattan",20,60)
@@ -158,6 +167,7 @@ end
 
 #score_game(db,"3/16/2017",1,2)
 #score_game(db,"3/11/2017",2,2,2)
-score_game(db,"3/15/2017","Settlers of Cattan", 2)
+#score_game(db,"3/15/2017","Settlers of Cattan", 2)
 view_games(db)
 view_players(db)
+view_scores(db)
