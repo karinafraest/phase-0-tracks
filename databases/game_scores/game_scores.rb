@@ -45,7 +45,7 @@ require 'sqlite3'
 	db.execute(create_table_scores)
 
 #ADD A BOARD GAME TO THE LIST IF IT IS NOT ALREADY THERE
-def add_game(db,name,times_played=0, cost=0)
+def add_game(db,name,times_played=0, cost)
 	current_games=db.execute("SELECT * FROM board_games")
 	included=false
 	if current_games.length==0
@@ -64,7 +64,6 @@ def add_game(db,name,times_played=0, cost=0)
 	end
 	current_games
 end
-
 
 #ADD A PLAYER TO THE LIST IF IT IS NOT ALREADY THERE
 def add_player(db,first_name,last_name)
@@ -157,17 +156,56 @@ end
 #add_game(db,"Settlers of Cattan",20,60)
 #add_game(db,"Splendor", 15,30.25)
 #add_game(db, "Pandemic",6,28)
-
-
-
 #add_player(db,"Karina","Franco")
 #add_player(db,"David","Cabrera")
-
-
-
 #score_game(db,"3/16/2017",1,2)
 #score_game(db,"3/11/2017",2,2,2)
 #score_game(db,"3/15/2017","Settlers of Cattan", 2)
-view_games(db)
-view_players(db)
-view_scores(db)
+action= ""
+until action=="exit"
+	puts "Score saver"
+	puts "SELECT AN OPTION"
+	puts "1. Add scores for a game"
+	puts "2. Add a new game"
+	puts "3. Add a new player"
+	puts "4. View saved scores."
+	puts "5. View games."
+	puts "6. View saved players."
+	puts "7. Exit."
+	action=gets.chomp.to_i
+
+	case action
+	when 1
+		puts "Add scores:"
+		puts "Date: mm/dd/yyyy"
+		date=gets.chomp
+		puts "Game played"
+		game=gets.chomp
+		puts "Number of players"
+		players=gets.chomp.to_i
+		score_game(db,date,game,players)
+	when 2
+		puts "Add game:"
+		puts "Game name, price"
+		game_info=gets.chomp.split(",")
+		add_game(db,game_info[0],game_info[1])
+	when 3
+		puts "Add player: "
+		puts "First name and Last name"
+		player_info=gets.chomp.split(" ")
+		add_player(db, player_info[0], player_info[1])
+	when 4
+		view_scores(db)
+	when 5
+		view_games(db)
+	when 6
+		view_players(db)
+	when 7 
+		action="exit"
+	else
+		puts "That is not a valid option."
+	end
+end
+
+
+
