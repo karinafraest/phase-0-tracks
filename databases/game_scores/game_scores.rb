@@ -163,7 +163,7 @@ end
 #score_game(db,"3/15/2017","Settlers of Cattan", 2)
 action= ""
 until action=="exit"
-	puts "Score saver"
+	puts "SCORE CENTER".center(50)
 	puts "SELECT AN OPTION"
 	puts "1. Add scores for a game"
 	puts "2. Add a new game"
@@ -209,3 +209,6 @@ end
 
 
 
+#Remove wrong scores, players and games
+#Every time you input new scores you add one to times played
+#View filters
