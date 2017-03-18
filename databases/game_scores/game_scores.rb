@@ -88,21 +88,22 @@ def add_player(db,first_name,last_name)
 end
 
 def add_score(db,date,game_id,player_id,score,games_per_day)
+	puts "Date:#{date},Game_id:#{game_id},Player_id: #{player_id}, Score:#{score},games_per_day: #{games_per_day}"
 	db.execute("INSERT INTO scores(date,game_id,games_per_day,player_id,score) VALUES(?,?,?,?,?)",[date,game_id,games_per_day,player_id,score])
 end
 
 def find_id(db,type,name)
 	if type=="game"
 		current_games=add_game(db,name,1) #Add 1 to times played PENDING
-		this_id=db.execute("SELECT id FROM board_games WHERE 'name'=?",[name])
+		this_id=db.execute("SELECT id FROM board_games WHERE name=?",[name])
 	else
 		name=name.split(" ")
 		first_name=name[0]
 		last_name=name[1]
 		current_players=add_player(db,first_name,last_name)
-		this_id=db.execute("SELECT id FROM players WHERE 'first_name'=? AND 'last_name'=?",[first_name,last_name])
+		this_id=db.execute("SELECT id FROM players WHERE first_name=? AND last_name=?",[first_name,last_name])
 	end
-	this_id
+	this_id[0]["id"]
 end
 
 #ADD A SCORE FOR A GAME
@@ -144,17 +145,19 @@ end
 #REVIEW SCORE TABLE
 
 #DRIVER CODE
-add_game(db,"Settlers of Cattan",20,60)
-add_game(db,"Splendor", 15,30.25)
-add_game(db, "Pandemic",6,28)
+#add_game(db,"Settlers of Cattan",20,60)
+#add_game(db,"Splendor", 15,30.25)
+#add_game(db, "Pandemic",6,28)
 
-view_games(db)
 
-add_player(db,"Karina","Franco")
-add_player(db,"David","Cabrera")
 
-view_players(db)
+#add_player(db,"Karina","Franco")
+#add_player(db,"David","Cabrera")
+
+
 
 #score_game(db,"3/16/2017",1,2)
 #score_game(db,"3/11/2017",2,2,2)
 score_game(db,"3/15/2017","Settlers of Cattan", 2)
+view_games(db)
+view_players(db)
