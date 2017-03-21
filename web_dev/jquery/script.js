@@ -1,1 +1,3 @@
-console.log("I am linked")
+function addColor(){
+	console.log("I work")
+}
