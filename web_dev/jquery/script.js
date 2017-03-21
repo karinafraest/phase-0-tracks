@@ -13,7 +13,11 @@ function addColor(){
 	$('div.change').each(function(){
 		$(this).css('background-color',newColor);
 		$(this).removeClass("change").addClass("still");
-	});
-		
+	});		
+}
+
+/*function that removes the last line*/
+function removeColor(){
+	var lastColorAdded=document.getElementById('rainbow').lastChild.remove();
 	
 }
