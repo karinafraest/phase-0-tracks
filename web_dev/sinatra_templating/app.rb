@@ -1,6 +1,7 @@
 # require gems
 require 'sinatra'
 require 'sqlite3'
+require 'sinatra/reloader' if development?
 
 set :public_folder, File.dirname(__FILE__) + '/static'
 
@@ -24,4 +25,13 @@ post '/students' do
   redirect '/'
 end
 
-# add static resources
+#
+get '/create_team' do
+	erb :team_creator
+end
+
+post '/create_team' do
+	filtered_students=db.execute("SELECT * FROM students WHERE campus=?", [params['campus']])
+	p filtered_students
+	redirect '/create_team'
+end
