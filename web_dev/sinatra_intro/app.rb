@@ -57,7 +57,11 @@ end
 #If there is no name, it simply says good job. 
 get '/great_job/' do
   name=params[:name]
+  if name==nil
+    "<p> Good job<p>"
+  else
   "<p>Great job #{name}<p>"
+  end
 end
 
 #Route that adds two numbers
