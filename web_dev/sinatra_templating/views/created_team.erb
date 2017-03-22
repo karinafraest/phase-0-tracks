@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Team</title>
+</head>
+<body>
+	<h1> Created team</h1>
+	<p> Your new 5 person team is:</p>
+	  <ul>
+	    <% @team.each do |student| %>
+	      <li><%= student['name'] %>, <%= student['age'] %> <%= student['campus'] %></li>
+    <% end %>
+  </ul>
+</body>
+</html>
