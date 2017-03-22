@@ -59,3 +59,13 @@ get '/great_job/' do
   name=params[:name]
   "<p>Great job #{name}<p>"
 end
+
+#Route that adds two numbers
+
+get '/:num1/+/:num2' do
+  n1=params[:num1].to_i
+  n2=params[:num2].to_i
+  sum=n1+n2
+"#{params[:num1]} + #{params[:num2]}= #{sum}"
+end
+
