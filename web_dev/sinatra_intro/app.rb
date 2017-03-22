@@ -26,7 +26,7 @@ end
 
 # write a GET route that retrieves
 # all student data
-get '/students' do
+get '/students/' do
   students = db.execute("SELECT * FROM students")
   response = ""
   students.each do |student|
@@ -69,3 +69,34 @@ get '/:num1/+/:num2' do
 "#{params[:num1]} + #{params[:num2]}= #{sum}"
 end
 
+# write a GET route that retrieves
+# all NYC students
+=begin
+get '/students/campus/:campus' do
+  students=db.execute("SELECT * FROM students WHERE campus=?",[params[:campus]])
+  response=""
+  students.each do |student|
+    response << "ID: #{student['id']}<br>"
+    response << "Name: #{student['name']}<br>"
+    response << "Age: #{student['age']}<br>"
+    response << "Campus: #{student['campus']}<br><br>"
+  end
+  response
+end
+=end
+
+#route parameters
+get '/students/campus/' do
+  campus=params[:campus]
+  if campus=="NYC" || campus=="SD" || campus=="CHI" || campus=="SEA"
+    students=db.execute("SELECT * FROM students WHERE campus=?",campus)
+    response=""
+    students.each do |student|
+      response << "ID: #{student['id']}<br>"
+      response << "Name: #{student['name']}<br>"
+      response << "Age: #{student['age']}<br>"
+      response << "Campus: #{student['campus']}<br><br>"
+    end
+  end
+  response
+end
