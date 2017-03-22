@@ -30,8 +30,35 @@ get '/create_team' do
 	erb :team_creator
 end
 
+
 post '/create_team' do
-	filtered_students=db.execute("SELECT * FROM students WHERE campus=?", [params['campus']])
-	p filtered_students
-	redirect '/create_team'
+	@@filtered_students=db.execute("SELECT * FROM students WHERE campus=?", [params['campus']])
+	redirect '/created_team'
+end
+
+get '/created_team' do
+	 ids=[]
+	 @@filtered_students.each do |student|
+	 	ids<<student["id"]	 	
+	 end
+	 
+	 chosen_ids=[]
+
+	 5.times {
+	 	new_id=ids.sample
+	 	chosen_ids<<new_id
+	 	index=ids.index(new_id)
+	 	ids.delete_at(index)
+	 }
+
+	 @team=[]
+
+	 @@filtered_students.each do |student|
+	 	if chosen_ids.include?(student["id"])
+	 		@team<<student
+	 	end
+	 end
+	 @team
+
+	erb :created_team
 end
